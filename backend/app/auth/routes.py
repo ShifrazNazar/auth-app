@@ -23,3 +23,19 @@ async def login(user: User):
 async def validate_token(request: Request, token: str):
     payload = verify_jwt_token(token)
     return {"message": "Token is valid", "user": payload["sub"]}
+
+@router.post("/register")
+async def register(user: User):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    
+    cursor.execute("SELECT * FROM users WHERE username = ?", (user.username,))
+    if cursor.fetchone():
+        conn.close()
+        raise HTTPException(status_code=400, detail="Username already exists")
+    
+    cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", (user.username, user.password))
+    conn.commit()
+    conn.close()
+
+    return {"message": "User registered successfully"}
