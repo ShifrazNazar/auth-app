@@ -47,11 +47,22 @@ This project is an authentication API built with FastAPI. It includes features f
 1. **Database Path:**
 
    The database file will be automatically created for you if it does not already exist. 
-   Ensure that the `DB_PATH` in `app/database.py` points to your SQLite database file. By default, it is set to:
+   Ensure that the `DB_PATH` in `app/database.py` points to a valid and accessible location on your system where the SQLite database file will be stored.
 
-    ```python
-    DB_PATH = "/Users/m2air16-256/Developer/auth-app.db"
-    ```
+   - **macOS/Linux Default Path:**
+
+     ```python
+     DB_PATH = "/Users/your-username/Developer/auth-app.db"
+     ```
+
+   - **Windows Example Path:**
+
+     ```python
+     DB_PATH = "C:\\Users\\your-username\\Developer\\auth-app.db"
+     ```
+
+   Make sure this path is valid for your system. You may need to adjust it to match the directory structure on your machine.
+
 
 ## Running the Application
 
